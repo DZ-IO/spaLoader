@@ -1,9 +1,14 @@
 // loader.js - 在当前页面加载SPA(Single-page application)
-// javascript:["http://127.0.0.1:5500/js/loader.js"].forEach(function (e, s) {((s = document.createElement("script")).src = e),document.head.appendChild(s)})
+// javascript:["https://dz-io.github.io/spaLoader/js/loader.js"].forEach(function (e, s) {((s = document.createElement("script")).src = e),document.head.appendChild(s)})
 // 配置文件列表
-const files = ["js/app.js", "img/favicon.ico", "css/app.css", "html/comp1.html", "html/comp2.html"];
+const files = [
+  "html/comp1.html",
+  "js/app.js",
+  "img/favicon.ico",
+  "css/app.css",
+];
 // 配置域名
-const origin = "http://127.0.0.1:5500/";
+const origin = "https://dz-io.github.io/spaLoader/";
 // 清空head
 document.head.innerHTML = "";
 // 清空body

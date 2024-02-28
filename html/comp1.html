@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<template id="comp1">
+  <p>这个标签是在模板comp1中定义的</p>
+</template>
+<script>
+  // 将模板插入body，参见https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_templates_and_slots#%E5%85%B3%E4%BA%8E%E6%A8%A1%E6%9D%BF_templates
+  let template = document.getElementById("comp1");
+  let templateContent = template.content;
+  document.body.appendChild(templateContent);
+</script>
