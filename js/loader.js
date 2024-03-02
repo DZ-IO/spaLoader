@@ -2,6 +2,7 @@
 // javascript:["https://dz-io.github.io/spaLoader/js/loader.js"].forEach(function (e, s) {((s = document.createElement("script")).src = e),document.head.appendChild(s)})
 // 配置文件列表
 const files = [
+  "https://polyfill.io/v3/polyfill.min.js?features=default%2Cdom4%2Ces2022%2Ces7",
   "html/comp1.html",
   "js/app.js",
   "img/favicon.ico",
@@ -16,6 +17,8 @@ document.body.innerHTML = "正在加载...";
 let supportImport = "import" in document.createElement("link");
 // 插入文件
 files.forEach((f) => {
+  // 生成加载URL
+  if (!f.match(/^(http|https):\/\//)) f = `${origin}${f}`;
   // 定义tag
   let tag;
   // 判断类型
@@ -24,13 +27,13 @@ files.forEach((f) => {
     case "js":
       tag = document.createElement("script");
       tag.type = "module";
-      tag.src = `${origin}${f}`;
+      tag.src = f;
       break;
     // html - <link rel="import" href="" />
     case "html":
       tag = document.createElement("link");
       tag.rel = "import";
-      tag.href = `${origin}${f}`;
+      tag.href = f;
       // 检查polyfill
       if (!supportImport) {
         const importHTML = document.createElement("script");
@@ -45,15 +48,14 @@ files.forEach((f) => {
       tag = document.createElement("link");
       tag.rel = "shortcut icon";
       tag.type = "image/x-icon";
-      tag.href = `${origin}${f}`;
+      tag.href = f;
       break;
     // css - <link rel="stylesheet" href="" />
     case "css":
       tag = document.createElement("link");
       tag.rel = "stylesheet";
-      tag.href = `${origin}${f}`;
+      tag.href = f;
       break;
-
     default:
       break;
   }
