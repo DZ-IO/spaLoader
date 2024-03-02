@@ -12,13 +12,15 @@ SPA(Single-page application)加载器
 
 ## 使用
 
-1. 编写您的单页应用程序，然后统计需要加载的 HTML、js 和 CSS
+1. 在这个模板中编写您的单页应用程序，然后统计需要加载的 HTML、js 和 CSS
 2. 修改 loader.js,将需要加载的东西塞进去，并设置主页域名
-3. 写一个漂亮的欢迎页，然后把下面这段代码插入您欢迎页中合适的位置
+3. 写一个漂亮的欢迎页，然后把类似于下面这段代码插入您欢迎页中合适的位置
 
 ```html
 <a href="javascript:%5B%22http://127.0.0.1:5500/js/loader.js%22%5D.forEach(function%20(e,%20s)%20%7B((s%20=%20document.createElement(%22script%22)).src%20=%20e),document.head.appendChild(s)%7D)" onclick="alert('请将本链接加入收藏夹');return false" >显示文字</a>
 ```
+
+> 记得改一下loader.js的位置
 
 ## 注意
 
