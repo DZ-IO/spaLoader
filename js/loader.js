@@ -19,21 +19,22 @@ let supportImport = "import" in document.createElement("link");
 files.forEach((f) => {
   // 生成加载URL
   if (!f.match(/^(http|https):\/\//)) f = `${origin}${f}`;
+  let url = new URL(f);
   // 定义tag
   let tag;
   // 判断类型
-  switch (f.split(".").reverse()[0]) {
+  switch (url.pathname.split(".").reverse()[0]) {
     // js - <script type="module" src=""></script>
     case "js":
       tag = document.createElement("script");
       tag.type = "module";
-      tag.src = f;
+      tag.src = url;
       break;
     // html - <link rel="import" href="" />
     case "html":
       tag = document.createElement("link");
       tag.rel = "import";
-      tag.href = f;
+      tag.href = url;
       // 检查polyfill
       if (!supportImport) {
         const importHTML = document.createElement("script");
@@ -48,16 +49,16 @@ files.forEach((f) => {
       tag = document.createElement("link");
       tag.rel = "shortcut icon";
       tag.type = "image/x-icon";
-      tag.href = f;
+      tag.href = url;
       break;
     // css - <link rel="stylesheet" href="" />
     case "css":
       tag = document.createElement("link");
       tag.rel = "stylesheet";
-      tag.href = f;
+      tag.href = url;
       break;
     default:
       break;
   }
-  document.head.appendChild(tag);
+  if (tag) document.head.appendChild(tag);
 });
